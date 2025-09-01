@@ -1,0 +1,22 @@
+name: Example Workflow
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+      - name: Run script
+        run: python your_script.py
